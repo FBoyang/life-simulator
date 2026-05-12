@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Fly - Tiny Connectome Simulator</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Digital Fly</p>
+          <h1>Tiny Connectome Simulator</h1>
+          <p class="hero-copy">
+            Sensory neurons sample the arena, spikes flow through a small
+            connectome, and motor neurons shape the virtual fly's motion.
+          </p>
+        </div>
+        <div class="hero-note">
+          Silence a neuron to test its causal role in sugar seeking, bitter
+          avoidance, and forward movement.
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="world-panel">
+          <canvas
+            id="world"
+            width="760"
+            height="520"
+            aria-label="Digital fly arena"
+          ></canvas>
+          <div class="world-caption">
+            Drag sugar in the arena. Use left and right arrows to steer; release
+            them to return to autopilot.
+          </div>
+        </section>
+
+        <aside class="control-panel">
+          <section class="card controls-card">
+            <h2>Interventions</h2>
+            <label class="toggle-row">
+              <input id="toggle-sugar" type="checkbox" checked />
+              <span>Sugar source</span>
+            </label>
+            <label class="toggle-row">
+              <input id="toggle-bitter" type="checkbox" />
+              <span>Bitter source</span>
+            </label>
+            <label class="toggle-row">
+              <input id="toggle-light" type="checkbox" />
+              <span>Light source</span>
+            </label>
+
+            <label class="stacked-field" for="silence-select">
+              <span>Silence neuron</span>
+              <select id="silence-select">
+                <option value="">None</option>
+              </select>
+            </label>
+
+            <label class="stacked-field" for="synaptic-scale">
+              <span>
+                Global synaptic scale
+                <strong id="synaptic-scale-value">1.00</strong>
+              </span>
+              <input
+                id="synaptic-scale"
+                type="range"
+                min="0.4"
+                max="1.8"
+                step="0.05"
+                value="1"
+              />
+            </label>
+
+            <div class="button-row">
+              <button id="reset-button" type="button">Reset simulation</button>
+              <button id="randomize-button" type="button">Randomize fly start</button>
+            </div>
+          </section>
+
+          <section class="card stats-card">
+            <h2>Current state</h2>
+            <dl class="stat-grid">
+              <div>
+                <dt>Sensory</dt>
+                <dd id="sensory-readout"></dd>
+              </div>
+              <div>
+                <dt>Motor</dt>
+                <dd id="motor-readout"></dd>
+              </div>
+              <div>
+                <dt>Silenced</dt>
+                <dd id="silenced-readout">None</dd>
+              </div>
+              <div>
+                <dt>Control</dt>
+                <dd id="control-readout">Autopilot</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="card activity-card">
+            <h2>Neuron activity</h2>
+            <div id="activity-bars" class="activity-bars"></div>
+          </section>
+
+          <section class="card explainer-card">
+            <h2>Model idea</h2>
+            <p>
+              Sensory neurons receive environmental input; the tiny connectome
+              propagates spikes; motor neurons control movement; neuron
+              silencing tests causal roles.
+            </p>
+            <p>
+              By default the fly tends to approach sugar, avoids bitter when it
+              is active, and uses left/right light sensors to steer toward the
+              lamp.
+            </p>
+          </section>
+        </aside>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
