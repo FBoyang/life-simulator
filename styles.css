@@ -144,6 +144,37 @@ body {
   font-size: 1.08rem;
 }
 
+.card-heading-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.card-heading-row h2 {
+  margin: 0;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(94, 146, 67, 0.15);
+  color: #2e6430;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.status-pill[data-alive="false"] {
+  background: rgba(193, 79, 70, 0.14);
+  color: var(--danger);
+}
+
 .controls-card {
   display: grid;
   gap: 12px;
@@ -236,6 +267,68 @@ button:hover {
   white-space: pre-line;
 }
 
+.life-bars {
+  display: grid;
+  gap: 11px;
+}
+
+.life-row {
+  display: grid;
+  grid-template-columns: 68px 1fr 46px;
+  align-items: center;
+  gap: 10px;
+}
+
+.life-label,
+.life-value {
+  font-family: "IBM Plex Mono", "SFMono-Regular", monospace;
+  font-size: 0.84rem;
+}
+
+.life-value {
+  text-align: right;
+}
+
+.life-track {
+  position: relative;
+  height: 12px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(84, 109, 79, 0.13);
+}
+
+.life-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0;
+  border-radius: inherit;
+  transition: width 120ms linear;
+}
+
+.energy-fill {
+  background: linear-gradient(90deg, #d9b84f, #7ebe57);
+}
+
+.hunger-fill {
+  background: linear-gradient(90deg, #e6cc6a, #d06d4f);
+}
+
+.stress-fill {
+  background: linear-gradient(90deg, #e7b965, #c14f46);
+}
+
+.health-fill {
+  background: linear-gradient(90deg, #d76d5d, #5fa84e);
+}
+
+.age-fill {
+  background: linear-gradient(90deg, #80a9b7, #617d93);
+}
+
+body[data-alive="false"] #world {
+  filter: saturate(0.7);
+}
+
 .activity-bars {
   display: grid;
   gap: 10px;
@@ -311,5 +404,9 @@ button:hover {
 
   .activity-row {
     grid-template-columns: 74px 1fr 40px;
+  }
+
+  .life-row {
+    grid-template-columns: 62px 1fr 42px;
   }
 }

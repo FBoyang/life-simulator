@@ -33,7 +33,8 @@
           ></canvas>
           <div class="world-caption">
             Drag sugar in the arena. Use left and right arrows to steer; release
-            them to return to autopilot.
+            them to return to autopilot. A starving or injured fly slows down
+            and becomes inactive when health reaches zero.
           </div>
         </section>
 
@@ -76,8 +77,52 @@
             </label>
 
             <div class="button-row">
-              <button id="reset-button" type="button">Reset simulation</button>
+              <button id="reset-button" type="button">Revive / reset</button>
               <button id="randomize-button" type="button">Randomize fly start</button>
+            </div>
+          </section>
+
+          <section class="card life-card">
+            <div class="card-heading-row">
+              <h2>Life state</h2>
+              <span id="life-status" class="status-pill" data-alive="true">Active</span>
+            </div>
+            <div class="life-bars">
+              <div id="life-energy-row" class="life-row">
+                <div class="life-label">Energy</div>
+                <div class="life-track">
+                  <div id="life-energy-fill" class="life-fill energy-fill"></div>
+                </div>
+                <div id="life-energy-value" class="life-value">0%</div>
+              </div>
+              <div id="life-hunger-row" class="life-row inverse">
+                <div class="life-label">Hunger</div>
+                <div class="life-track">
+                  <div id="life-hunger-fill" class="life-fill hunger-fill"></div>
+                </div>
+                <div id="life-hunger-value" class="life-value">0%</div>
+              </div>
+              <div id="life-stress-row" class="life-row inverse">
+                <div class="life-label">Stress</div>
+                <div class="life-track">
+                  <div id="life-stress-fill" class="life-fill stress-fill"></div>
+                </div>
+                <div id="life-stress-value" class="life-value">0%</div>
+              </div>
+              <div id="life-health-row" class="life-row">
+                <div class="life-label">Health</div>
+                <div class="life-track">
+                  <div id="life-health-fill" class="life-fill health-fill"></div>
+                </div>
+                <div id="life-health-value" class="life-value">0%</div>
+              </div>
+              <div id="life-age-row" class="life-row age-row">
+                <div class="life-label">Age</div>
+                <div class="life-track">
+                  <div id="life-age-fill" class="life-fill age-fill"></div>
+                </div>
+                <div id="life-age-value" class="life-value">0:00</div>
+              </div>
             </div>
           </section>
 
@@ -118,13 +163,14 @@
             <p>
               By default the fly tends to approach sugar, avoids bitter when it
               is active, and uses left/right light sensors to steer toward the
-              lamp.
+              lamp. Energy, hunger, stress, and health add a small life layer
+              that can later become an observation space for learning agents.
             </p>
           </section>
         </aside>
       </main>
     </div>
 
-    <script src="./app.js"></script>
+    <script type="module" src="./app.js"></script>
   </body>
 </html>
